@@ -1,0 +1,23 @@
+
+<div class="conteudo-principal">
+{{#each reservas}}
+
+  
+            <div class="horarios-main">
+      
+            <div>
+              <img src="perfil01.png"><h1>{{nome}}</h1>
+
+            </div>
+            <p><strong>Data:</strong>  {{data}}   Horario: {{horarioentrada}}  -   {{horariosaida}} </p>
+            <p><strong>Sala:</strong>  {{sala}}</p>
+            <br>
+            <a href="/deletar/{{id}}"><button>Delete</button></a>
+            </div>
+{{/each}}
+
+</div>
+
+
+
+
