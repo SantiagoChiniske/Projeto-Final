@@ -89,8 +89,8 @@ app.get('/reservar',function(req,res){
   })
   
 
-  app.delete('/deletar/:id',(req,res)=>{
-    execsSQLQuery('DELETE From reserva WHERE ID='+parseInt(req.params.id),res)
+  app.delete('/deletar/:id',async (req,res)=>{
+    await reservas.destroy('DELETE From reserva WHERE ID='+parseInt(req.params.id),res)
     })
 
 
