@@ -23,14 +23,15 @@ const { application } = require("express")
 
 
 //rotas
+app.get('/',function(req,res){
+  res.render('login.handlebars')
+})
 
 app.get('/reservar',function(req,res){
     res.render('reserva.handlebars')
   })
 
-  app.get('/',function(req,res){
-    res.render('login.handlebars')
-  })
+
 
 
   app.get('/admin',function(req,res){
@@ -53,6 +54,12 @@ app.get('/reservar',function(req,res){
         res.render('home.handlebars',{reservas: reservas})
       })
   })
+
+  app.get('/usuarios',function(req,res){
+    Usuario.findAll({order: [['id','DESC']]}).then(function(usuarios){
+      res.render('usuarios.handlebars',{usuarios: usuarios})
+    })
+}) 
 
 
 
@@ -89,9 +96,16 @@ app.get('/reservar',function(req,res){
   })
   
 
-  app.delete('/deletar/:id',async (req,res)=>{
-    await reservas.destroy('DELETE From reserva WHERE ID='+parseInt(req.params.id),res)
+  app.get('/deletar/:id',function (req,res){
+    Reserva.destroy({
+      where: {'id': req.params.id}
+    }).then(function(){
+      console.log("Reserva Excluida")
+      res.redirect('/home')
+    }).catch(function(erro){
+      res.send("Reserva nao apagada com sucesso"+erro)
     })
+   })
 
 
     app.listen(8081, function(){

@@ -1,0 +1,22 @@
+<div class="conteudo-principal">
+{{#each usuarios}}
+
+    <div class="usuarios">
+
+        <h2 id="nome-usuario"> Nome: {{nome}}</h2>  <h2 id="id-usuarios">ID:  {{id}}</h2><br>
+        <h2>Cargo:    {{cargo}}</h2><br>
+        <h2>CPF:{{cpf}}</h2>
+
+        <div class="botoes-usuarios">
+            <button>Editar</button>
+            <button>Excluir</button>
+
+        </div>
+        
+    </div>
+    <br>
+
+
+{{/each}}
+
+</div>
