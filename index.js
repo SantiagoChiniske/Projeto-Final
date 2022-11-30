@@ -57,6 +57,8 @@ app.get('/reservar',function(req,res){
 
   app.get('/usuarios',function(req,res){
     Usuario.findAll({order: [['id','DESC']]}).then(function(usuarios){
+
+      
       res.render('usuarios.handlebars',{usuarios: usuarios})
     })
 }) 
@@ -100,7 +102,7 @@ app.get('/reservar',function(req,res){
     Reserva.destroy({
       where: {'id': req.params.id}
     }).then(function(){
-      console.log("Reserva Excluida")
+      console.log("Reserva Excluida");
       res.redirect('/home')
     }).catch(function(erro){
       res.send("Reserva nao apagada com sucesso"+erro)
