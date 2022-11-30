@@ -8,7 +8,7 @@ const  Reserva =db.sequelize.define('reservas',{
         type: db.Sequelize.STRING
     },
     data:{
-        type: db.Sequelize.DATE
+        type: db.Sequelize.DATEONLY
     },
     horarioentrada:{
         type: db.Sequelize.TIME
@@ -20,5 +20,5 @@ const  Reserva =db.sequelize.define('reservas',{
 
 module.exports = Reserva
 
-//Reserva.sync({force:true})
+Reserva.sync({force:true})
 

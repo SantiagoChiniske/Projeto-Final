@@ -24,7 +24,7 @@ const { application } = require("express")
 
 //rotas
 app.get('/',function(req,res){
-  res.render('login.handlebars')
+  res.sendFile(__dirname+'/src/index.html')
 })
 
 app.get('/reservar',function(req,res){
