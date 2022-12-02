@@ -3,13 +3,13 @@
 
     <div class="usuarios">
 
-        <h2 id="nome-usuario"> Nome: {{nome}}</h2>  <h2 id="id-usuarios">ID:  {{id}}</h2><br>
+        <h2 id="nome-usuario"> Nome: {{name}}</h2>  <h2 id="id-usuarios">ID:  {{id}}</h2><br>
         <h2>Cargo:    {{cargo}}</h2><br>
-        <h2>CPF:{{cpf}}</h2>
+        <h2>Nome usuario: {{user}}</h2>
 
         <div class="botoes-usuarios">
             <button>Editar</button>
-            <button>Excluir</button>
+           <a href="/deletar-usuario/{{id}}"><button>Excluir</button></a> 
 
         </div>
         

@@ -6,6 +6,9 @@ const Usuario = require('./Models/Usuario')
 const Reserva= require('./Models/Reserva')
 const { application } = require("express")
 
+const bcrypt = require('bcryptjs');
+const jwt = require('jsonwebtoken');
+
 // Config
     //Template engine
     app.engine('handlebars', handlebars.engine({defaultLayout: 'main'}));
@@ -56,7 +59,7 @@ app.get('/reservar',function(req,res){
   })
 
   app.get('/usuarios',function(req,res){
-    Usuario.findAll({order: [['id','DESC']]}).then(function(usuarios){
+    Usuario.findAll({order: [['id','ASC']]}).then(function(usuarios){
 
       
       res.render('usuarios.handlebars',{usuarios: usuarios})
@@ -67,20 +70,31 @@ app.get('/reservar',function(req,res){
 
 //Rotas de Cadastro e Delete
 
-  app.post('/cadastropessoa',function(req,res){
+  app.post('/cadastropessoa', function(req,res){
+
     Usuario.create({
-        nome: req.body.nomeusuario,
-        cpf: req.body.cpf,
-        senha: req.body.senha,
-        confirmesenha: req.body.confirmesenha,
-        cargo: req.body.cargo
-    }).then(function(){
-        console.log("Usuario Cadastrado")
-        res.redirect('/home')
-    }).catch(function(erro){
-        res.send("Houve um erro"+erro)
-    })
+      name: req.body.nomeusuario,
+      user: req.body.user,
+      password: req.body.senha,
+      cargo: req.body.cargo
   })
+  if(req.body.user === req.body ){
+    console.log("Usuario ja existente")
+  }else{
+    console.log("Usuario Cadastrado")
+    res.redirect('/admin')
+  }
+
+  
+})
+
+  /* 
+  .then(function(){
+      
+  }).catch(function(erro){
+      res.send("Houve um erro"+erro)
+  })
+  */
 
   app.post('/reservasala',function(req,res){
     Reserva.create({
@@ -96,6 +110,18 @@ app.get('/reservar',function(req,res){
         res.send("Houve um erro"+erro)
     })
   })
+
+
+  app.post('/login', function (req, res) {
+
+    if(req.body.password ===  req.body.senha   && req.body.user === req.body.user ){
+
+      res.redirect('/home')
+    }
+    
+});
+
+
   
 
   app.get('/deletar/:id',function (req,res){
@@ -109,6 +135,16 @@ app.get('/reservar',function(req,res){
     })
    })
 
+   app.get('/deletar-usuario/:id',function (req,res){
+    Usuario.destroy({
+      where: {'id': req.params.id}
+    }).then(function(){
+      console.log("Funcionario Excluida");
+      res.redirect('/usuarios')
+    }).catch(function(erro){
+      res.send("Reserva nao apagada com sucesso"+erro)
+    })
+   })
 
     app.listen(8081, function(){
       console.log("Servidor rodando na url http://localhost:8081")

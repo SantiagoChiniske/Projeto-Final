@@ -2,15 +2,14 @@
     <div class="conteudo-principal">
                <p>Adicionar Novo usuario</p>
         <div class="forms-usuario">
-                <input type="text" placeholder="Nome" id="nomeusuario" name="nomeusuario"/> <br>
-                <input type="text" placeholder="CPF" id="CPF" name="cpf"//> <br>
-                <input type="password" placeholder="Senha" id="Senha" name="senha"//> <br>
-                <input type="password" placeholder="Confirme Senha" id="senha" name="confirmesenha"//>
+                <input type="text" placeholder="Nome" id="nomeusuario" name="nomeusuario" required/> <br>
+                <input type="text" placeholder="user" id="CPF" name="user" required/> <br>
+                <input type="password" placeholder="Senha" id="Senha" name="senha"required/> <br>
                 <input type="Text" placeholder="ID" id="ID" name="id"//>
                 
                 <div class="cargo">
                 <p>Cargo:</p>
-                    <select id="cargo" name="cargo" >
+                    <select id="cargo" name="cargo" required >
                         <option value="aluno">Aluno</option>
                         <option value="professor">Professor</option>
                         <option value="admin">Admin</option>

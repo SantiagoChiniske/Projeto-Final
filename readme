@@ -11,3 +11,9 @@ npm install --save express-handlebars
 npm install --save mysql2
 npm install nodemon -g
 npm install express
+
+Instalar o módulo para criptografar a senha
+### npm install --save bcryptjs
+
+Instalar a dependencia para JWT
+### npm install --save jsonwebtoken

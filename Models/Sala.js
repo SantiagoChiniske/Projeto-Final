@@ -5,4 +5,4 @@ const  Sala =db.sequelize.define('salas',{
         type: db.Sequelize.STRING
     },
 })
-Sala.sync({force:true})
+//Sala.sync({force:true})

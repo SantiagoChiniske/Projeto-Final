@@ -20,5 +20,5 @@ const  Reserva =db.sequelize.define('reservas',{
 
 module.exports = Reserva
 
-Reserva.sync({force:true})
+//Reserva.sync({force:true})
 

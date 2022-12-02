@@ -1,22 +1,30 @@
 const db = require('./db')
 
-const  Usuario =db.sequelize.define('usuarios',{
-    nome:{
-        type: db.Sequelize.STRING
+const Usuario = db.sequelize.define('usuarios', {
+    id: {
+        type: db.Sequelize.INTEGER,
+        autoIncrement: true,
+        allowNull: false,
+        primaryKey: true
     },
-    cpf:{
-        type: db.Sequelize.STRING
+    name: {
+        type: db.Sequelize.STRING,
+        allowNull: false,
     },
-    senha:{
-        type: db.Sequelize.STRING
+    user: {
+        type: db.Sequelize.STRING,
+        allowNull: false,
     },
-    confirmesenha:{
-        type: db.Sequelize.STRING
+    password: {
+        type: db.Sequelize.STRING,
+        allowNull: false,
     },
     cargo:{
         type: db.Sequelize.STRING
     }
-})
+
+});
+//Usuario.sync({force:true})
+
 
 module.exports = Usuario
-//Usuario.sync({force:true})
