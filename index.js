@@ -9,6 +9,7 @@ const { application } = require("express")
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 
+
 // Config
     //Template engine
     app.engine('handlebars', handlebars.engine({defaultLayout: 'main'}));
@@ -34,8 +35,14 @@ app.get('/reservar',function(req,res){
     res.render('reserva.handlebars')
   })
 
+  app.get('/home',function(req,res){
+    Reserva.findAll({order: [['id','DESC']]}).then(function(reservas){
+      res.render('home.handlebars',{reservas: reservas})
+    })
+})
 
 
+  //rotas admin
 
   app.get('/admin',function(req,res){
 
@@ -50,18 +57,8 @@ app.get('/reservar',function(req,res){
     res.render('cadastro-sala.handlebars')
   })
 
-
-
-  app.get('/home',function(req,res){
-      Reserva.findAll({order: [['id','DESC']]}).then(function(reservas){
-        res.render('home.handlebars',{reservas: reservas})
-      })
-  })
-
   app.get('/usuarios',function(req,res){
     Usuario.findAll({order: [['id','ASC']]}).then(function(usuarios){
-
-      
       res.render('usuarios.handlebars',{usuarios: usuarios})
     })
 }) 
@@ -122,8 +119,6 @@ app.get('/reservar',function(req,res){
 });
 
 
-  
-
   app.get('/deletar/:id',function (req,res){
     Reserva.destroy({
       where: {'id': req.params.id}
@@ -146,6 +141,7 @@ app.get('/reservar',function(req,res){
     })
    })
 
+   //Servidor Rodando nessa porta
     app.listen(8081, function(){
       console.log("Servidor rodando na url http://localhost:8081")
   });

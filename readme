@@ -1,16 +1,24 @@
-Informacoes para funcionar 
+Como rodar o projeto
 
-Instalar no PC
+Instalar os mudolo e necessario o node.js
 
+Instalar o modulo Sequelize:
 npm install --save sequelize
 
+Instalar o modulo Mysql 2:
+npm install --save mysql2
+
+Instalar o modulo Nodemon para rodar o servidor e ir editando sem matar a aplicacao:
+npm install nodemon -g
+
+Instalar o modulo do express:
+npm install express
+
+Instalar o modulo body-parser:
 npm install --save body-parser
 
+Instalar o modulo Handlebar:
 npm install --save express-handlebars
-
-npm install --save mysql2
-npm install nodemon -g
-npm install express
 
 Instalar o módulo para criptografar a senha
 ### npm install --save bcryptjs
