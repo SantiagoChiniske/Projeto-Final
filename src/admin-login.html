@@ -75,13 +75,13 @@
   <body class="text-center">
     
 <main class="form-signin w-100 m-auto">
-  <form action="/login" method="POST">
+  <form action="/login-admin" method="POST">
     <img class="mb-4" src="logo.png" alt="" width="72" height="65">
-    <h1 class="h3 mb-3 fw-normal">Login - usuario</h1>
+    <h1 class="h3 mb-3 fw-normal">Login - admin</h1>
 
     <div class="form-floating">
       <input type="text" class="form-control" id="floatingInput" placeholder="name.sobrenome" name="login-nome">
-      <label for="floatingInput">Nome usuario</label>
+      <label for="floatingInput">Nome do admin</label>
     </div>
     <div class="form-floating">
       <input type="password" class="form-control" id="floatingPassword" placeholder="Password" name="login-password">
@@ -90,10 +90,10 @@
 
     <div class="checkbox mb-3">
       <label>
-        <a href="/login-admin">Login admin</a>
+        <a href="/">Login usuario</a>
       </label>
     </div>
-    <a href="/home"><button class="w-100 btn btn-lg btn-primary" type="submit">Sign in</button></a>
+    <a href="/admin"><button class="w-100 btn btn-lg btn-primary" type="submit">Sign in</button></a>
     <p class="mt-5 mb-3 text-muted">&copy; 2017–2022</p>
   </form>
 </main>

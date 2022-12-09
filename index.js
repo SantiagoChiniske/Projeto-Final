@@ -2,12 +2,14 @@ const express = require("express")
 const app = express()
 const handlebars = require('express-handlebars')
 const bodyParser =require('body-parser')
+const bcrypt = require('bcryptjs');
+const jwt = require('jsonwebtoken');
+
 const Usuario = require('./Models/Usuario')
 const Reserva= require('./Models/Reserva')
 const { application } = require("express")
 
-const bcrypt = require('bcryptjs');
-const jwt = require('jsonwebtoken');
+
 
 
 // Config
@@ -35,6 +37,10 @@ app.get('/reservar',function(req,res){
     res.render('reserva.handlebars')
   })
 
+  app.get('/perfil',function(req,res){
+    res.render('perfil.handlebars')
+  })
+
   app.get('/home',function(req,res){
     Reserva.findAll({order: [['id','DESC']]}).then(function(reservas){
       res.render('home.handlebars',{reservas: reservas})
@@ -42,16 +48,22 @@ app.get('/reservar',function(req,res){
 })
 
 
+
   //rotas admin
 
-  app.get('/admin',function(req,res){
+  
+  app.get('/login-admin',function(req,res){
+    res.sendFile(__dirname+'/src/admin-login.html')
+  })
 
+  app.get('/admin',function(req,res){
     res.render('admin.handlebars')
   })
-  app.get('/Cadastro-Pessoa',function(req,res){
 
+  app.get('/Cadastro-Pessoa',function(req,res){
     res.render('cadastro-pessoa.handlebars')
   })
+
   app.get('/Cadastro-Sala',function(req,res){
 
     res.render('cadastro-sala.handlebars')
@@ -116,6 +128,14 @@ app.get('/reservar',function(req,res){
       res.redirect('/home')
     }
     
+});
+
+app.post('/login-admin', function (req, res) {
+
+  if(req.body.password ===  req.body.senha   && req.body.user === req.body.user ){
+    res.redirect('/admin')
+  }
+  
 });
 
 
