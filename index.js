@@ -29,6 +29,25 @@ const { application } = require("express")
 
 
 //rotas
+
+app.post('/login', function (req, res) {
+
+  if(req.body.password ===  req.body.senha   && req.body.user === req.body.user ){
+
+    res.redirect('/home')
+  }
+  
+});
+
+app.post('/login-admin', function (req, res) {
+
+if(req.body.password ===  req.body.senha   && req.body.user === req.body.user ){
+  res.redirect('/admin')
+}
+
+});
+
+
 app.get('/',function(req,res){
   res.sendFile(__dirname+'/src/index.html')
 })
@@ -114,31 +133,14 @@ app.get('/reservar',function(req,res){
         horariosaida: req.body.horasaida
     }).then(function(){
         console.log("Reserva Cadastrada")
-        res.redirect('/home')
+        res.redirect('/admin')
     }).catch(function(erro){
         res.send("Houve um erro"+erro)
     })
   })
 
 
-  app.post('/login', function (req, res) {
-
-    if(req.body.password ===  req.body.senha   && req.body.user === req.body.user ){
-
-      res.redirect('/home')
-    }
-    
-});
-
-app.post('/login-admin', function (req, res) {
-
-  if(req.body.password ===  req.body.senha   && req.body.user === req.body.user ){
-    res.redirect('/admin')
-  }
   
-});
-
-
   app.get('/deletar/:id',function (req,res){
     Reserva.destroy({
       where: {'id': req.params.id}
